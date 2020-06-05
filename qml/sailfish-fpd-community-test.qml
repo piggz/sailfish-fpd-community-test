@@ -9,7 +9,9 @@ ApplicationWindow
     cover: Component {
         CoverBackground {
             CoverPlaceholder {
-                text: qsTr("FPD Test")
+                forceFit: true
+                icon.source: "sailfish-fpd-community-test.png"
+                text: qsTr("Fingerprint")
             }
         }
     }

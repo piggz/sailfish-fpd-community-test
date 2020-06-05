@@ -48,6 +48,7 @@ Page {
                         mainPage.addLog(qsTr("Error while starting to enroll: %1").arg(r));
                     } else {
                         started = true;
+                        mainPage.addLog(qsTr("Starting to enroll: %1").arg(name.text));
                     }
                 }
             }
@@ -68,21 +69,6 @@ Page {
             }
 
             SectionHeader {
-                text: qsTr("Log")
-            }
-
-            Repeater {
-                model: mainPage.log
-                delegate: Label {
-                    text: model.text
-                    color: Theme.highlightColor
-                    width: parent.width - 2*x
-                    wrapMode: Text.Wrap
-                    x: Theme.horizontalPageMargin
-                }
-            }
-
-            SectionHeader {
                 text: qsTr("Defined fingerprints")
             }
 
@@ -99,6 +85,21 @@ Page {
                         wrapMode: Text.Wrap
                         x: Theme.horizontalPageMargin
                     }
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Log")
+            }
+
+            Repeater {
+                model: mainPage.log
+                delegate: Label {
+                    text: model.text
+                    color: Theme.highlightColor
+                    width: parent.width - 2*x
+                    wrapMode: Text.Wrap
+                    x: Theme.horizontalPageMargin
                 }
             }
         }

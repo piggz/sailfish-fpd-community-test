@@ -27,13 +27,6 @@ Page {
 
             MenuItem {
                 enabled: FPDInterface.connected
-                text: qsTr("Add fingerprint")
-                onClicked: pageStack.push(Qt.resolvedUrl("EnrollPage.qml"),
-                                          { "mainPage" : mainPage })
-            }
-
-            MenuItem {
-                enabled: FPDInterface.connected
                 text: "Identify"
                 onClicked: {
                     var r = FPDInterface.identify();
@@ -41,6 +34,13 @@ Page {
                         mainPage.addLog(qsTr("Error while starting indentification: %1").arg(r));
                     }
                 }
+            }
+
+            MenuItem {
+                enabled: FPDInterface.connected
+                text: qsTr("Add fingerprint")
+                onClicked: pageStack.push(Qt.resolvedUrl("EnrollPage.qml"),
+                                          { "mainPage" : mainPage })
             }
         }
 
@@ -53,7 +53,39 @@ Page {
             spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qsTr("Community FPD Test")
+                title: qsTr("Fingerprint")
+            }
+
+            SectionHeader {
+                text: qsTr("Fingerprints")
+            }
+
+            Repeater {
+                model: fingers
+                delegate: ListItem {
+                    id: listItem
+                    contentHeight: Theme.itemSizeSmall
+                    menu: ContextMenu {
+                        MenuItem {
+                            enabled: FPDInterface.connected
+                            text: qsTr("Remove")
+                            onClicked: listItem.remorseDelete(function() {
+                                var r = FPDInterface.remove(model.finger);
+                                if (r !== 0) {
+                                    mainPage.addLog(qsTr("Error while starting removal: %1").arg(r));
+                                }
+                            })
+                        }
+                    }
+
+                    Label {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: model.finger
+                        width: parent.width - 2*x
+                        wrapMode: Text.Wrap
+                        x: Theme.horizontalPageMargin
+                    }
+                }
             }
 
             SectionHeader {
@@ -87,38 +119,6 @@ Page {
                     width: parent.width - 2*x
                     wrapMode: Text.WordWrap
                     x: Theme.horizontalPageMargin
-                }
-            }
-
-            SectionHeader {
-                text: qsTr("Fingerprints")
-            }
-
-            Repeater {
-                model: fingers
-                delegate: ListItem {
-                    id: listItem
-                    contentHeight: Theme.itemSizeSmall
-                    menu: ContextMenu {
-                        MenuItem {
-                            enabled: FPDInterface.connected
-                            text: qsTr("Remove")
-                            onClicked: listItem.remorseDelete(function() {
-                                var r = FPDInterface.remove(model.finger);
-                                if (r !== 0) {
-                                    mainPage.addLog(qsTr("Error while starting removal: %1").arg(r));
-                                }
-                            })
-                        }
-                    }
-
-                    Label {
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: model.finger
-                        width: parent.width - 2*x
-                        wrapMode: Text.Wrap
-                        x: Theme.horizontalPageMargin
-                    }
                 }
             }
         }

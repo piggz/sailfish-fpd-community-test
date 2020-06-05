@@ -35,13 +35,13 @@
         <source>State: </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Starting to enroll: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>
-    <message>
-        <source>Community FPD Test</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Status</source>
         <translation type="unfinished"></translation>
@@ -122,11 +122,15 @@
         <source>Verified</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Fingerprint</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>sailfish-fpd-community-test</name>
     <message>
-        <source>FPD Test</source>
+        <source>Fingerprint</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
