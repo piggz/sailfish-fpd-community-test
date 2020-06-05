@@ -22,6 +22,7 @@ SOURCES += src/sailfish-fpd-community-test.cpp \
 DISTFILES += qml/sailfish-fpd-community-test.qml \
     qml/pages/EnrollPage.qml \
     qml/pages/MainPage.qml \
+    qml/sailfish-fpd-community-test.png \
     rpm/sailfish-fpd-community-test.changes.in \
     rpm/sailfish-fpd-community-test.changes.run.in \
     rpm/sailfish-fpd-community-test.spec \
